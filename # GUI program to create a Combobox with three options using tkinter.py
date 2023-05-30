@@ -14,7 +14,5 @@ my_combobox2 = ttk.Combobox(
     root, textvariable=my_str_var,
     values=["A1", "B2", "C3"])
 
-
 my_combobox.pack()
-my_combobox2.pack()
 root.mainloop()
