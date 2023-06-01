@@ -6,11 +6,11 @@
 #   uses Tuples  to store your question data (questions and answers) [f]
 #   checks their answers [f]
 #   keeps score [f]
-#   Give out a percentage score [WIP]
-#   Comment your code [WIP]
-#   Show testing evidence [WIP]
-#   asks users if they want to play again (at the end) [WIP]
-#   Commit to Github at every stage to show version control [WIP]
+#   Give out a percentage score [f]
+#   Comment your code [f]
+#   Show testing evidence [f]
+#   asks users if they want to play again (at the end) [f]
+#   Commit to Github at every stage to show version control [f]
 #   Exit the program [f]
 
 
@@ -55,32 +55,45 @@ options = (
 
 answers = ("A", "D", "B", "C", "B", "D", "C", "C", "A", "B", "B", "D", "D", "C", "C")
 
-# Initialize variables
-score = 0
-total_questions = len(questions)
+play_again = True
 
-# Quiz loop
-for i in range(total_questions):
-    current_question = questions[i]
-    print("Question", i+1, ":", current_question)
+while play_again:
+    # Initialize variables
+    score = 0
+    total_questions = len(questions)
 
-    # Print options
-    for j in range(4):
-        print(options[i][j])
+    # Quiz loop
+    i = 0
+    while i < total_questions:
+        current_question = questions[i]
+        print("Question", i+1, ":", current_question)
 
-    user_answer = input("Your answer (enter A, B, C, or D), or 'q' to quit: ").upper()
-    # Option for user to quit
-    if user_answer == 'Q':
-        break
+        # Print options
+        for j in range(4):
+            print(options[i][j])
 
-    if user_answer == answers[i]:
-        print("Correct!")
-        score += 1
-    else:
-        print("Incorrect!")
+        user_answer = input("Your answer (enter A, B, C, or D), or 'q' to quit the program: ").upper()
 
-    print()  # Print an empty line between questions
+        # Option for user to quit
+        if user_answer == 'Q':
+            break
 
-# Quiz summary
-print("Quiz completed!")
-print("Your score:", score, "/", total_questions)
+        if user_answer == answers[i]:
+            print("Correct!")
+            score += 1
+        else:
+            print("Incorrect!")
+
+        print()  # Print an empty line between questions
+        i += 1
+
+    # Quiz summary
+    print("Quiz completed!")
+    print("Your score:", score, "/", total_questions)
+    percentage = round((score / total_questions) * 100, 2)
+    print("Percentage score:", percentage, "%")
+
+    # Ask user if they want to play again
+    play_again_input = input("Do you want to play again? (yes/no): ")
+    if play_again_input.lower() != "yes":
+        play_again = False
